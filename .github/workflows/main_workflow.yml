@@ -1,0 +1,16 @@
+name: Main workflow
+
+on:
+  push:
+    branches:
+      - githubActions_improvement
+
+jobs:
+  syntax_check_job:
+    
+  test_execution_job:
+
+  build_statics_job:
+ 
+  deploy_job:
+    
