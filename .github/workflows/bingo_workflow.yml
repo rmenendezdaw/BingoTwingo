@@ -33,5 +33,20 @@ jobs:
           npm install
           npm install jest
           npm test
-
+  build_statics_job:
+    runs-on: ubuntu-latest
+    name: Build Statics
+    needs: [syntax_check_job, test_execution_job]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: build
+        run: |
+          npm install
+          npm run buildDev
+      - name: artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: ./dist
     
