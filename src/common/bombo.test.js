@@ -1,5 +1,5 @@
 
-import {Bombo} from '../bombo.js';
+import {Bombo} from './bombo';
 
 describe('Generate bingo bombo', () => {
   let bombo;
