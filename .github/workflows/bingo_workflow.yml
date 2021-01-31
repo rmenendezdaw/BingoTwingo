@@ -33,6 +33,7 @@ jobs:
           npm install
           npm install jest
           npm test
+
   build_statics_job:
     runs-on: ubuntu-latest
     name: Build Statics
@@ -49,4 +50,20 @@ jobs:
         with:
           name: artifact
           path: ./dist
-    
+  
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: Deploy statics
+    needs: build_statics_job
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with: 
+          name: Artifacts dist
+      - name: Surge Deploy
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: rmenendez_bingo.surge.sh
+          project: .
+          login: ${{ secrets.SURGE_EMAIL }}
+          token: ${{ secrets.SURGE_TOKEN }}
