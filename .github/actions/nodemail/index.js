@@ -21,14 +21,12 @@ var mailOptions = {
   from: "<rmenendezaction@gmail.com>",
   to: user_email,
   subject: 'Resultado del workflow ejecutado',
-  html:`
-    <p> Se ha realizado un push en la rama githubActions_improvement 
-  que ha provocado la ejecución del workflow Bingo_Workflow con los siguientes resultados:<p>
-  
-  <span>test_execution_job: ${{test_execution_job}}</span>
-  syntax_check_job: ${syntax_check_job}
-  build_statics_job: ${build_statics_job}
-  deploy_job: ${deploy_job}`,
+  text:` Se ha realizado un push en la rama githubActions_improvement 
+  que ha provocado la ejecución del workflow Bingo_Workflow con los siguientes resultados: \n
+  \n test_execution_job: ${test_execution_job}
+  \n syntax_check_job: ${syntax_check_job}
+  \n build_statics_job: ${build_statics_job}
+  \n deploy_job: ${deploy_job}`,
 };
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
