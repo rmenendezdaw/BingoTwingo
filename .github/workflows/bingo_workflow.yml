@@ -93,3 +93,22 @@ jobs:
           test_execution_job: ${{needs.test_execution_job.outputs.jobStatus}}
           build_statics_job: ${{needs.build_statics_job.outputs.jobStatus}}
           deploy_job: ${{needs.deploy_job.outputs.jobStatus}}
+  
+  update_readme_job:
+    name: update_readme_job
+    runs-on: ubuntu-latest
+    needs: deploy_job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create log
+        run: |
+          sed -i '$d' README.md
+          echo "Ultima versión desplegada el dia: `date` " >> README.md
+      - name: Doing push
+        run: |
+        git config user.name rmenendezdaw
+        git config user.email rmenendeziestacio@gmail.com
+        git add .
+        git commit -m "AutoCommit para el seguimiento del despliegue"
+        git push origin githubActions_improvement
