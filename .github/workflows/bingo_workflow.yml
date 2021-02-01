@@ -86,10 +86,10 @@ jobs:
       - name: Send Email
         uses: ./.github/actions/nodemail
         with:
+          user_email: ${{ secrets.USER_EMAIL }}
+          email: ${{ secrets.EMAIL }}
+          pass: ${{ secrets.PASS }}
           syntax_check_job: ${{needs.syntax_check_job.outputs.jobStatus}}
           test_execution_job: ${{needs.test_execution_job.outputs.jobStatus}}
           build_statics_job: ${{needs.build_statics_job.outputs.jobStatus}}
           deploy_job: ${{needs.deploy_job.outputs.jobStatus}}
-          user_email: ${{ secrets.USER_EMAIL }}
-          email: ${{ secrets.EMAIL }}
-          pass: ${{ secrets.PASS }}
