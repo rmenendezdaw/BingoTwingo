@@ -21,6 +21,8 @@ jobs:
           LINTER_RULES_PATH: /
           JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js 
           VALIDATE_JAVASCRIPT_ES: true
+    outputs:
+      jobStatus: ${{ job.status }}
 
   test_execution_job:
     runs-on: ubuntu-latest
@@ -33,6 +35,8 @@ jobs:
           npm install
           npm install jest
           npm test
+    outputs:
+      jobStatus: ${{ job.status }}
 
   build_statics_job:
     runs-on: ubuntu-latest
@@ -50,6 +54,8 @@ jobs:
         with:
           name: artifact
           path: ./dist
+    outputs:
+      jobStatus: ${{ job.status }}
   
   deploy_job:
     runs-on: ubuntu-latest
@@ -67,3 +73,23 @@ jobs:
           project: .
           login: ${{ secrets.SURGE_EMAIL }}
           token: ${{ secrets.SURGE_TOKEN }}
+    outputs:
+      jobStatus: ${{ job.status }}
+  notification_job:
+    name: notification_job
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: deploy_job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Send Email
+        uses: ./.github/actions/nodemail
+        with:
+          syntax_check_job: ${{needs.syntax_check_job.outputs.jobStatus}}
+          test_execution_job: ${{needs.test_execution_job.outputs.jobStatus}}
+          build_statics_job: ${{needs.build_statics_job.outputs.jobStatus}}
+          deploy_job: ${{needs.deploy_job.outputs.jobStatus}}
+          user_email: ${{ secrets.USER_EMAIL }}
+          email: ${{ secrets.EMAIL }}
+          pass: ${{ secrets.PASS }}
