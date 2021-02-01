@@ -3,25 +3,22 @@ const core = require("@actions/core");
 
 const user_email = core.getInput("user_email");
 const email = core.getInput("email");
-const pass = core.getInput("pass");
+const password = core.getInput("pass");
 const syntax_check_job = core.getInput("syntax_check_job");
 const test_execution_job = core.getInput("test_execution_job");
 const build_statics_job = core.getInput("build_statics_job");
 const deploy_job = core.getInput("deploy_job");
 
 var transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    requireTLS: true,
+    service: 'gmail',
     auth: {
-        user: email,
-        pass: pass
+        user: 'rmenendezaction@gmail.com',
+        pass: password
     }
 });
 
 var mailOptions = {
-  from: email,
+  from: "<rmenendezaction@gmail.com>",
   to: user_email,
   subject: 'Resultado del workflow ejecutado',
   text:` Se ha realizado un push en la rama githubActions_improvement 
