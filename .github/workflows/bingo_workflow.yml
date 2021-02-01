@@ -107,8 +107,8 @@ jobs:
           echo "Ultima versión desplegada el dia: `date` " >> README.md
       - name: Doing push
         run: |
-        git config user.name rmenendezdaw
-        git config user.email rmenendeziestacio@gmail.com
-        git add .
-        git commit -m "AutoCommit para el seguimiento del despliegue"
-        git push origin githubActions_improvement
+          git config user.name rmenendezdaw
+          git config user.email rmenendeziestacio@gmail.com
+          git add .
+          git commit -m "AutoCommit para el seguimiento del despliegue"
+          git push origin githubActions_improvement
