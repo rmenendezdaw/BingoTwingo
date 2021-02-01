@@ -51,7 +51,6 @@ var mailOptions = {
   \n build_statics_job:${build_statics_job}
   \n deploy_job: ${deploy_job}`,
 };
-
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
