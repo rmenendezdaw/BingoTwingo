@@ -2,6 +2,15 @@ name: "Send email"
 description: "Send email with nodemail"
 
 inputs:
+  user_email:
+    description: "User email"
+    required: true
+  email:
+    description: "Email send"
+    required: true
+  pass:
+    description: "Password send"
+    required: true
   syntax_check_job:
     description: "syntax_check_job"
     required: true
@@ -13,15 +22,6 @@ inputs:
     required: true
   deploy_job:
     description: "deploy_job"
-    required: true
-  user_email:
-    description: "User email"
-    required: true
-  email:
-    description: "Email send"
-    required: true
-  pass:
-    description: "Password send"
     required: true
 
 outputs:
