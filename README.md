@@ -112,4 +112,4 @@ $ sudo n stable
    [webpack]: <https://webpack.js.org/>
 
 
-Ultima versión desplegada el dia: Mon Feb  1 22:12:41 UTC 2021 
+Ultima versión desplegada el dia: Tue Feb  2 14:40:22 UTC 2021 
