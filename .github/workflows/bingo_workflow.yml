@@ -111,4 +111,4 @@ jobs:
           git config user.email rmenendeziestacio@gmail.com
           git add .
           git commit -m "AutoCommit para el seguimiento del despliegue"
-          git push origin githubActions_improvement
+          git push origin master
