@@ -151,7 +151,7 @@ Dentro del job podemos ver que nos ha mostrado un mensaje de que ha ido todo bie
  
  Por supuesto, necesitará configurar una serie de variables de entorno algunas de las cuales, al contener valores comprometidos, serán secrets de nuestro repositorio github.
 
- ##### Desarrollo
+##### Desarrollo
 
 Empezamos instalando y configurando surge para poder desplegar la aplicación. 
 
